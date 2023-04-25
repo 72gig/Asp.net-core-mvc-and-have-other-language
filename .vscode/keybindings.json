@@ -1,0 +1,19 @@
+{
+    "key": "tab",
+    "command": "extension.multiCommand.execute",
+    "args": {
+        "sequence": [
+            "toggleVim",
+            "tabnine.tab-override",
+            "toggleVim",
+            "extension.vim_insert",
+        ],
+        "interval": 50,
+    },
+    "when": "vim.active && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && tabnine.tab-override && textInputFocus"
+},
+{
+    "key": "tab",
+    "command": "-tabnine.tab-override",
+    "when": "vim.active && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && tabnine.tab-override && textInputFocus"
+},

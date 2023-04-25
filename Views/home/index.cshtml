@@ -1,0 +1,54 @@
+@{
+    string appTitle = "選項報表選項";
+    string radio = "False";
+    string startdate = "False";
+    string enddate = "False";
+
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@appTitle</title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function GetMessage() {
+            document.getElementById("ptext").innerText = "new";
+        }
+        function jsShow() {
+            alert("jsShow");
+        }
+        function gotoReport() {
+            radio = document.querySelector('[name=report]:checked').id
+            startdate = document.getElementById("startday").value;
+            enddate = document.getElementById("endday").value;
+            // location.href = '@Url.Action("ReportData", "Report", new { type = "sale" })'; // 這是一個變數的時候可以使用的程式碼
+            location.href = '@Url.Action("ReportData", "Report", new { type = radio, startDate = startdate, endDate = enddate})';
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <input type="radio" name="report" id="saler" name="sale-report">銷售訂單報表</input>
+        <input type="radio" name="report" id="purchase" name="purchase-report">採購訂單報表</input>
+        <input type="radio" name="report" id="outside" name="outside-report">加工單報表</input>
+    </div>
+    <input type="button" onclick="GetMessage()" value="Get Message" />
+    <p id="ptext"></p>
+    <input type="button" value="Message" id="htmlbutton" onclick="jsShow()" />
+    <div>
+        <label for="start">Start Date:</label>
+        <input type="date" id="startday" name="input-start" /><br>
+        <label for="end">End Date:</label>
+        <input type="date" id="endday" name="input-end" />
+    </div>
+    <div>
+        <input type="button" value="Go Somewhere Else" onclick="gotoReport()" />
+    </div>
+
+</body>
+
+</html>

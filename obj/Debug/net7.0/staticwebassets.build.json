@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "dYPg0zUhVcFKRCz3Q3IZTraSecdoWC1rCniY3xU0E/U=",
+  "Source": "非課程 用asp.net core 建立報表",
+  "BasePath": "_content/非課程 用asp.net core 建立報表",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "非課程 用asp.net core 建立報表\\wwwroot",
+      "Source": "非課程 用asp.net core 建立報表",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "BasePath": "_content/非課程 用asp.net core 建立報表",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\start.html",
+      "SourceId": "非課程 用asp.net core 建立報表",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "BasePath": "_content/非課程 用asp.net core 建立報表",
+      "RelativePath": "start.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\start.html"
+    }
+  ]
+}

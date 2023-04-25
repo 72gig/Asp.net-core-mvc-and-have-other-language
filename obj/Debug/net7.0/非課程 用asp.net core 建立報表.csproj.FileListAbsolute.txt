@@ -1,0 +1,29 @@
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\appsettings.Development.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\appsettings.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\非課程 用asp.net core 建立報表.staticwebassets.runtime.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\非課程 用asp.net core 建立報表.exe
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\非課程 用asp.net core 建立報表.deps.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\非課程 用asp.net core 建立報表.runtimeconfig.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\非課程 用asp.net core 建立報表.dll
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\bin\Debug\net7.0\非課程 用asp.net core 建立報表.pdb
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.csproj.AssemblyReference.cache
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.AssemblyInfoInputs.cache
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.AssemblyInfo.cs
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.csproj.CoreCompileInputs.cache
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.MvcApplicationPartsAssemblyInfo.cache
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.RazorAssemblyInfo.cache
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.RazorAssemblyInfo.cs
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets\msbuild.非課程 用asp.net core 建立報表.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets\msbuild.build.非課程 用asp.net core 建立報表.props
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.非課程 用asp.net core 建立報表.props
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.非課程 用asp.net core 建立報表.props
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets.pack.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets.build.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\staticwebassets.development.json
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\scopedcss\bundle\非課程 用asp.net core 建立報表.styles.css
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.dll
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\refint\非課程 用asp.net core 建立報表.dll
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.pdb
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\非課程 用asp.net core 建立報表.genruntimeconfig.cache
+D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表\obj\Debug\net7.0\ref\非課程 用asp.net core 建立報表.dll
