@@ -3,7 +3,20 @@
     string radio = "False";
     string startdate = "False";
     string enddate = "False";
+    
 
+
+}
+@functions {
+    protected string start(){
+        
+        return "Start";
+    }
+
+    protected string gethidden1(){
+        
+        return "test";
+    }
 }
 
 <!DOCTYPE html>
@@ -21,11 +34,34 @@
             alert("jsShow");
         }
         function gotoReport() {
-            radio = document.querySelector('[name=report]:checked').id
+            try {
+                radio = document.querySelector('[name=report]:checked').id;
+            }
+            catch (e) {
+                document.getElementById("printerror").innerText = "You need select radio!";
+            }
             startdate = document.getElementById("startday").value;
             enddate = document.getElementById("endday").value;
-            // location.href = '@Url.Action("ReportData", "Report", new { type = "sale" })'; // 這是一個變數的時候可以使用的程式碼
-            location.href = '@Url.Action("ReportData", "Report", new { type = radio, startDate = startdate, endDate = enddate})';
+            if (startdate == "" || enddate == "") {
+                document.getElementById("printerror").innerHTML = "You need select start date and end date";
+                throw 204
+            } else if (startdate > enddate) {
+
+                document.getElementById("printerror").innerHTML = "You need select non-error date value";
+                throw 204
+            }
+            //location.href = '@Url.Action("ReportData", "Report", new { type = "sale" })'; // 這是一個變數的時候可以使用的程式碼
+            // location.href = '@Url.Action("ReportData", "Report", new { type = radio, startDate = startdate, endDate = enddate})'; // 找得到C#的變數
+            // location.href = '@Url.Action("ReportData", "Report", new { type = start(), startDate = startdate, endDate = enddate})'; // 找得到@function的變數
+            // document.getElementById("hiddenfield1").value = radio;
+            // location.href =  '@Url.Action("ReportData", "Report", new { type =  gethidden1()})';
+            location.href = "/ReportInput?type=" + radio + "&startdate=" + startdate + "&enddate=" + enddate
+        }
+    </script>
+    <script language="C#" runat="server">
+        void ReportClicked(object sender, EventArgs e)
+        {
+            hiddenfield1.value = document.querySelector('[name=report]:checked').id;
         }
     </script>
 </head>
@@ -36,9 +72,9 @@
         <input type="radio" name="report" id="purchase" name="purchase-report">採購訂單報表</input>
         <input type="radio" name="report" id="outside" name="outside-report">加工單報表</input>
     </div>
-    <input type="button" onclick="GetMessage()" value="Get Message" />
+    <!--input type="button" onclick="GetMessage()" value="Get Message" />
     <p id="ptext"></p>
-    <input type="button" value="Message" id="htmlbutton" onclick="jsShow()" />
+    <input type="button" value="Message" id="htmlbutton" onclick="jsShow()" /-->
     <div>
         <label for="start">Start Date:</label>
         <input type="date" id="startday" name="input-start" /><br>
@@ -46,8 +82,17 @@
         <input type="date" id="endday" name="input-end" />
     </div>
     <div>
-        <input type="button" value="Go Somewhere Else" onclick="gotoReport()" />
+        <input type="button" value="Go" onclick="gotoReport()" name="Button"/>
+        <label id = "printerror"></label>
     </div>
+    <div>
+        <asp:HiddenField id="hiddenfield1" runat="server"/>
+        <asp:HiddenField id="hiddenfield2" runat="server"/>
+        <asp:HiddenField id="hiddenfield3" runat="server"/>
+    </div>
+    <form runat="server">
+        <asp:Button id=Button1 Text="Clickbutton" οnclick="ReportClicked" runat="server" />
+    </form>
 
 </body>
 
