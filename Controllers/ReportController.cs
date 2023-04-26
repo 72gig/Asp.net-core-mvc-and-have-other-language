@@ -19,7 +19,7 @@ namespace IActionResultExample.Controllers
             sqlUser data = new sqlUser();
             var result =  data.selectSql(setting);
 
-            return Content($"<h1>test {type}<h1>", "text/html");
+            return Content($"<h1>test {result}<h1>", "text/html");
         }
     }
 }

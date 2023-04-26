@@ -22,10 +22,11 @@ namespace IActionResultExample.Models
 
     }
 
-    public class sqlUser{
+    public class sqlUser : sqlResult
+    {
         public List<sqlResult> selectSql(Readsql read){
-            //保存的地方
-            List<sqlResult> dataList = new List<sqlResult>();
+
+            List<sqlResult> listData = new List <sqlResult>();
 
             // 連接資料庫
             SqlConnection conn = new SqlConnection("Server=10.0.0.21;Database=crge;User=test_erp;Password=test_erp;TrustServerCertificate=True");
@@ -35,29 +36,66 @@ namespace IActionResultExample.Models
 
             // 設定table 和 where
             string? getTable = "";
-            string? getwhere = "";
+            string? getWhere = "";
             if (read.Type == "saler"){
                 getTable = "c105";
-                getwhere = " (fiono='52') ";
+                getWhere = " (fiono='52') ";
             }else if (read.Type == "purchase"){
                 getTable = "c105";
-                getwhere = " (fiono='01') ";
+                getWhere = " (fiono='01') ";
             }else if (read.Type == "outside"){
                 getTable = "c105";
-                getwhere = " (fiono='05') ";
+                getWhere = " (fiono='05') ";
             }
+
+            // 要防止有null 的資料 否則不能編輯
+            string stfdate = "";
+            if (read.StartDate != null){
+                stfdate = read.StartDate;
+            }else{
+                stfdate = "2000/01/01";
+            }
+            string edfdate = "";
+            if (read.EndDate != null){
+                edfdate = read.EndDate;
+            }else{
+                edfdate = "2200/01/01";
+            }
+
+            getWhere = getWhere + " and (fdate > '" + settingDate(stfdate) + "') and (fdate < '" + settingDate(edfdate) + "')";
             // 依照 Readsql的資料決定得到什麼資料
             // 設定sql 指令
-            using (var cmd = new SqlCommand("select * from " + getTable + " where " + getwhere, conn))
+            using (var cmd = new SqlCommand("select * from " + getTable + " where " + getWhere, conn))
             using (var reader = cmd.ExecuteReader())  // 執行並準備讀取
             {
-                while (reader.Read())
-                {
-                    // 在這裡加入資料
+                if (reader.HasRows){
+                    while (reader.Read())
+                    {
+                        //保存的地方
+                        sqlResult dataList = new sqlResult();
+                        // 在這裡加入資料
+                        dataList.code = (string)reader["flino"];
+                        dataList.date = (DateTime)DateTime.ParseExact((string)reader["fdate"],"yyyy/mm/dd",null);
+                        dataList.partner = (string)reader["fcbna"];
+                        dataList.product = (string)reader["fpdno"];
+                        dataList.cost = (Int32)reader["fsamo"];
+
+                        listData.Add(dataList);
+                    }
                 }
             }
 
-            return dataList;
+            conn.Close();
+
+            return listData;
+
         }
+        public string settingDate(string getData){
+            if (getData.Contains('-')){
+                return getData.Replace('-','/');
+            }
+            return "";
+        }
+        
     }
 }
