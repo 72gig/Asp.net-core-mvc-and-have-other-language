@@ -14,8 +14,8 @@ namespace IActionResultExample.Controllers
                                         Readsql setting)
         {
             var qrerydata = Request.QueryString;
-            // 傳到Model 分析
 
+            // 傳到Model 分析
             sqlUser data = new sqlUser();
             var result =  data.selectSql(setting);
 

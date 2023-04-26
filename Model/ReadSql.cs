@@ -18,7 +18,7 @@ namespace IActionResultExample.Models
         public DateTime? date { get; set; }
         public string? partner { get; set; }
         public string? product { get; set; }
-        public float? cost { get; set; }
+        public double? cost { get; set; }
 
     }
 
@@ -78,7 +78,7 @@ namespace IActionResultExample.Models
                         dataList.date = (DateTime)DateTime.ParseExact((string)reader["fdate"],"yyyy/mm/dd",null);
                         dataList.partner = (string)reader["fcbna"];
                         dataList.product = (string)reader["fpdno"];
-                        dataList.cost = (Int32)reader["fsamo"];
+                        dataList.cost = (double)reader["fsamo"];
 
                         listData.Add(dataList);
                     }

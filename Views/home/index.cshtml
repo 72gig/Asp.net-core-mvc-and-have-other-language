@@ -8,15 +8,6 @@
 
 }
 @functions {
-    public string start(){
-        
-        return "Start";
-    }
-
-    public string gethidden1(){
-        
-        return "test";
-    }
 }
 
 <!DOCTYPE html>
@@ -52,9 +43,7 @@
             }
             //location.href = '@Url.Action("ReportData", "Report", new { type = "sale" })'; // 這是一個變數的時候可以使用的程式碼
             // location.href = '@Url.Action("ReportData", "Report", new { type = radio, startDate = startdate, endDate = enddate})'; // 找得到C#的變數
-            // location.href = '@Url.Action("ReportData", "Report", new { type = start(), startDate = startdate, endDate = enddate})'; // 找得到@function的變數
             // document.getElementById("hiddenfield1").value = radio;
-            // location.href =  '@Url.Action("ReportData", "Report", new { type =  gethidden1()})';
             location.href = "/ReportInput?type=" + radio + "&startdate=" + startdate + "&enddate=" + enddate
         }
     </script>
