@@ -7,6 +7,9 @@ double allCost = Math.Round((double)@ViewData["reportallcost"],4);
 double mostCost = Math.Round((double)@ViewData["reportmostcost"],4);
 double mostCostPresent = Math.Round((double)@ViewData["reportmostcostpresent"],4)*100;
 double mostQtyPresent = Math.Round((double)@ViewData["reportmostqtypresent"],4)*100;
+double allQty = Math.Round((double)@ViewData["reportallqty"],4);
+double mostQty = Math.Round((double)@ViewData["reportmostqty"],4);
+
 
 }
 @functions{
@@ -42,11 +45,6 @@ double mostQtyPresent = Math.Round((double)@ViewData["reportmostqtypresent"],4)*
                     form_all.style.display = 'none';
                     form_image.style.display = 'block';
                 }
-                // else {
-                //     form_detail.style.display = 'none';
-                //     form_all.style.display = 'none';
-                //     form_image.style.display = 'none';
-                // }
             });
             btn_all.addEventListener('click', () => {
 
@@ -66,7 +64,29 @@ double mostQtyPresent = Math.Round((double)@ViewData["reportmostqtypresent"],4)*
             });
         })
     </script>
+    <script>
+        $(document).ready(function() {  //文件完成後再執行
+            var btns = document.querySelectorAll("#print_button span");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener('click', () => {               
+                    for (var j = 0; j < btns.length; j++) {
+                        btns[j].style.backgroundColor = "";
+                        btns[j].style.color = "black";
+                    }
+                })
+            }
+            
+            function changeColor(){
+                this.style.backgroundColor = "black";
+                this.style.color = "white";
+            }
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].onclick = changeColor;
+            }
+        })
+    </script>
     <link rel="stylesheet" href='page_css.css' type="text/css"/>
+    <link rel="stylesheet" href='global_css.css' type="text/css"/>
 </head>
 
 <body>
@@ -80,23 +100,36 @@ double mostQtyPresent = Math.Round((double)@ViewData["reportmostqtypresent"],4)*
         <h2 style="font-size: 40px;">加工單報表</h2>
     }
     <div id="print_button" class = "button_page" style="display: flex; justify-content:center;">
-        <span id="print_image">圖表顯示</span>
+        <span id="print_image" style="background-color: black; color: white;">圖表顯示</span>
         <span id="print_detail">詳細資料</span>
         <span id="print_all">總計</span>
     </div>
     <form id = "form_all" style="display: none;">
         <div id="data_all" style="padding-top: 40px;">
-            <span style="font-size: 60px; line-height: 85px">報表資料的開始日期: @ViewData["reportstartdate"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">報表資料的結束日期: @ViewData["reportenddate"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">報表資料的總數量: @ViewData["reportallqty"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">報表資料的總金額: @allCost</span><br />
-            <span style="font-size: 60px; line-height: 85px">報表資料的下單最大數量客戶: @ViewData["reportmostqtypartner"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">下單最大數量客戶的總數量: @ViewData["reportmostqty"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">占報表資料的比例: @mostQtyPresent %</span><br />
-            <span style="font-size: 60px; line-height: 85px">報表資料的下單最大金額客戶: @ViewData["reportmostcostpartner"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">下單最大金額客戶的總金額: @ViewData["reportmostcost"]</span><br />
-            <span style="font-size: 60px; line-height: 85px">占報表資料的比例: @mostCostPresent %</span>
-
+            <table width="100%" border="1">
+                <tr>
+                    <td>
+                        <span style="font-size: 50px; line-height: 85px">報表資料的開始日期: @ViewData["reportstartdate"]</span><br />
+                        <span style="font-size: 50px; line-height: 85px">報表資料的結束日期: @ViewData["reportenddate"]</span><br />
+                    </td>
+                    <td>
+                        <span style="font-size: 50px; line-height: 85px">報表資料的總數量: @allQty</span><br />
+                        <span style="font-size: 50px; line-height: 85px">報表資料的總金額: @allCost</span><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-size: 50px; line-height: 85px">報表資料的下單最大數量客戶: @ViewData["reportmostqtypartner"]</span><br />
+                        <span style="font-size: 50px; line-height: 85px">下單最大數量客戶的總數量: @mostQty</span><br />
+                        <span style="font-size: 50px; line-height: 85px">占報表資料的比例: @mostQtyPresent %</span><br />
+                    </td>
+                    <td>
+                        <span style="font-size: 50px; line-height: 85px">報表資料的下單最大金額客戶: @ViewData["reportmostcostpartner"]</span><br />
+                        <span style="font-size: 50px; line-height: 85px">下單最大金額客戶的總金額: @mostCost</span><br />
+                        <span style="font-size: 50px; line-height: 85px">占報表資料的比例: @mostCostPresent %</span>
+                    </td>
+                </tr>
+            </table>
         </div>
     </form>
     <form id = "form_image">

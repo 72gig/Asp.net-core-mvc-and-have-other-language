@@ -1,0 +1,13 @@
+@page {
+  size: A4 landscape;
+}
+
+html{
+  zoom: 56%;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+  }
+}

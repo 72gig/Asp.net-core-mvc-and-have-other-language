@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Bw0J0kPUSKerqGJ7Inju4ZssJVDOTUpY3Mw7UEdqkeM=",
+  "Hash": "pc3wNojj590E0MQcJOcG06JwCoirE7GtV3cfyiMVwR4=",
   "Source": "非課程 用asp.net core 建立報表",
   "BasePath": "_content/非課程 用asp.net core 建立報表",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\change_form.js"
+    },
+    {
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\global_css.css",
+      "SourceId": "非課程 用asp.net core 建立報表",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "BasePath": "_content/非課程 用asp.net core 建立報表",
+      "RelativePath": "global_css.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\global_css.css"
     },
     {
       "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\page_css.css",
