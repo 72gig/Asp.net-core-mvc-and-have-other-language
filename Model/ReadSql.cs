@@ -16,9 +16,12 @@ namespace IActionResultExample.Models
         [FromQuery]
         public string? code { get; set; }
         public DateTime? date { get; set; }
+        public string? partnercode { get; set; }
         public string? partner { get; set; }
+        public string? productcode { get; set; }
         public string? product { get; set; }
         public double? cost { get; set; }
+        public double? qty { get; set; }
 
     }
 
@@ -65,7 +68,7 @@ namespace IActionResultExample.Models
             getWhere = getWhere + " and (fdate > '" + settingDate(stfdate) + "') and (fdate < '" + settingDate(edfdate) + "')";
             // 依照 Readsql的資料決定得到什麼資料
             // 設定sql 指令
-            using (var cmd = new SqlCommand("select * from " + getTable + " where " + getWhere, conn))
+            using (var cmd = new SqlCommand("select flino, fdate, fcbno,fcbna, fpdno, fpdna, fbaqu, fpdpr from " + getTable + " where " + getWhere, conn))
             using (var reader = cmd.ExecuteReader())  // 執行並準備讀取
             {
                 if (reader.HasRows){
@@ -76,9 +79,12 @@ namespace IActionResultExample.Models
                         // 在這裡加入資料
                         dataList.code = (string)reader["flino"];
                         dataList.date = (DateTime)DateTime.ParseExact((string)reader["fdate"],"yyyy/mm/dd",null);
+                        dataList.partnercode = (string)reader["fcbno"];
                         dataList.partner = (string)reader["fcbna"];
-                        dataList.product = (string)reader["fpdno"];
-                        dataList.cost = (double)reader["fsamo"];
+                        dataList.productcode = (string)reader["fpdno"];
+                        dataList.product = (string)reader["fpdna"];
+                        dataList.cost = (double)reader["fpdpr"];
+                        dataList.qty = (double)reader["fbaqu"];
 
                         listData.Add(dataList);
                     }
@@ -97,5 +103,10 @@ namespace IActionResultExample.Models
             return "";
         }
         
+    }
+    public class partnerTotal{
+        public string Partner { get; set; }
+        public double? PdCost { get; set; }
+        public double? PdQty { get; set; }
     }
 }

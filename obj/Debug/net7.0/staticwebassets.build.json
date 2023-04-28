@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dYPg0zUhVcFKRCz3Q3IZTraSecdoWC1rCniY3xU0E/U=",
+  "Hash": "Bw0J0kPUSKerqGJ7Inju4ZssJVDOTUpY3Mw7UEdqkeM=",
   "Source": "非課程 用asp.net core 建立報表",
   "BasePath": "_content/非課程 用asp.net core 建立報表",
   "Mode": "Default",
@@ -16,6 +16,40 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\change_form.js",
+      "SourceId": "非課程 用asp.net core 建立報表",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "BasePath": "_content/非課程 用asp.net core 建立報表",
+      "RelativePath": "change_form.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\change_form.js"
+    },
+    {
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\page_css.css",
+      "SourceId": "非課程 用asp.net core 建立報表",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "BasePath": "_content/非課程 用asp.net core 建立報表",
+      "RelativePath": "page_css.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\page_css.css"
+    },
     {
       "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\start.html",
       "SourceId": "非課程 用asp.net core 建立報表",

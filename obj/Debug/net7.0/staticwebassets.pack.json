@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\change_form.js",
+      "PackagePath": "staticwebassets\\change_form.js"
+    },
+    {
+      "Id": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\page_css.css",
+      "PackagePath": "staticwebassets\\page_css.css"
+    },
+    {
       "Id": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\start.html",
       "PackagePath": "staticwebassets\\start.html"
     },

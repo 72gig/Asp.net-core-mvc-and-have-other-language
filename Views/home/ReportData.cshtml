@@ -1,0 +1,227 @@
+@using IActionResultExample.Models
+@model IEnumerable<sqlResult>
+
+@{
+string notime = "";
+double allCost = Math.Round((double)@ViewData["reportallcost"],4);
+double mostCost = Math.Round((double)@ViewData["reportmostcost"],4);
+double mostCostPresent = Math.Round((double)@ViewData["reportmostcostpresent"],4)*100;
+double mostQtyPresent = Math.Round((double)@ViewData["reportmostqtypresent"],4)*100;
+
+}
+@functions{
+    int arrayCount = 0;
+    public int AddArrayCount(){
+        arrayCount += 1;
+        return arrayCount - 1;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Report</title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script>
+        $(document).ready(function() {  //文件完成後再執行
+            const btn_image = document.querySelector('#print_button #print_image');
+            const btn_detail = document.querySelector('#print_button #print_detail');
+            const btn_all = document.querySelector('#print_button #print_all');
+            const form_image = document.getElementById('form_image');
+            const form_detail = document.getElementById('form_detail');
+            const form_all = document.getElementById('form_all');
+
+            btn_image.addEventListener('click', () => {
+
+                if (form_image.style.display === 'none') {
+                    form_detail.style.display = 'none';
+                    form_all.style.display = 'none';
+                    form_image.style.display = 'block';
+                }
+                // else {
+                //     form_detail.style.display = 'none';
+                //     form_all.style.display = 'none';
+                //     form_image.style.display = 'none';
+                // }
+            });
+            btn_all.addEventListener('click', () => {
+
+                if (form_all.style.display === 'none') {
+                    form_detail.style.display = 'none';
+                    form_image.style.display = 'none';
+                    form_all.style.display = 'block';
+                }
+            });
+            btn_detail.addEventListener('click', () => {
+
+                if (form_detail.style.display === 'none') {
+                    form_image.style.display = 'none';
+                    form_all.style.display = 'none';
+                    form_detail.style.display = 'block';
+                }
+            });
+        })
+    </script>
+    <link rel="stylesheet" href='page_css.css' type="text/css"/>
+</head>
+
+<body>
+    @if ( (string?)ViewData["thisreport"] == "purchase"){  // 這裡的[]打錯字不會報錯
+        <h2 style="font-size: 40px;">採購單報表</h2>
+    }
+    else if ( (string?)ViewData["thisreport"] == "saler"){
+        <h2 style="font-size: 40px;">訂單報表</h2>
+    }
+    else if ( (string?)ViewData["thisreport"] == "outside"){
+        <h2 style="font-size: 40px;">加工單報表</h2>
+    }
+    <div id="print_button" class = "button_page" style="display: flex; justify-content:center;">
+        <span id="print_image">圖表顯示</span>
+        <span id="print_detail">詳細資料</span>
+        <span id="print_all">總計</span>
+    </div>
+    <form id = "form_all" style="display: none;">
+        <div id="data_all" style="padding-top: 40px;">
+            <span style="font-size: 60px; line-height: 85px">報表資料的開始日期: @ViewData["reportstartdate"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">報表資料的結束日期: @ViewData["reportenddate"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">報表資料的總數量: @ViewData["reportallqty"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">報表資料的總金額: @allCost</span><br />
+            <span style="font-size: 60px; line-height: 85px">報表資料的下單最大數量客戶: @ViewData["reportmostqtypartner"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">下單最大數量客戶的總數量: @ViewData["reportmostqty"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">占報表資料的比例: @mostQtyPresent %</span><br />
+            <span style="font-size: 60px; line-height: 85px">報表資料的下單最大金額客戶: @ViewData["reportmostcostpartner"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">下單最大金額客戶的總金額: @ViewData["reportmostcost"]</span><br />
+            <span style="font-size: 60px; line-height: 85px">占報表資料的比例: @mostCostPresent %</span>
+
+        </div>
+    </form>
+    <form id = "form_image">
+        <div id="data_image" style="display: flex;justify-content: space-between;">
+            <div id="bar" style="width:40%">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <span style="color: red;">* 在客戶數量過多時會沒辦法完全顯示</span>
+            </div>
+            <div id="dough" style="width:40%">
+                    <canvas id="myChart2" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </form>
+    <form id = "form_detail" style="display: none;">
+        <div id="data_detail">
+            <table width="100%" border="1">
+                <tr>
+                    <th> 單號 </th>
+                    <th> 日期 </th>
+                    <th> 客戶代號 </th>
+                    <th> 客戶 </th>
+                    <th> 產品代號 </th>
+                    <th> 產品 </th>
+                    <th> 單件花費 </th>
+                    <th> 數量 </th>
+                </tr>
+                @{
+                    
+                    foreach (var data in Model){
+                        if (@data.date.ToString() != null){
+                            notime = @data.date.ToString();
+                        }
+                        
+                        <tr>
+                            <td> @data.code
+                            </td>
+                            <td> @notime.Split(' ')[0]
+                            </td>
+                            <td> @data.partnercode
+                            </td>
+                            <td> @data.partner
+                            </td>
+                            <td> @data.productcode
+                            </td>
+                            <td> @data.product
+                            </td>
+                            <td> @data.cost
+                            </td>
+                            <td> @data.qty
+                            </td>
+                        </tr>
+                    }
+                    
+                }
+            </table>
+        </div>
+    </form>
+    <script>
+        // 在這裡給javascript 的陣列數值
+        let partnerArray = [];
+        let costArray = [];
+        let qtyArray = [];
+        let backArray = [];
+        let borderArray = [];
+        // 準備取值
+        let controllerJson = '@ViewData["jsonArray"]';
+        let stringJson = controllerJson.replaceAll('&quot;','\"');
+        var arrayJson = JSON.parse(stringJson);
+        // 把arrayJson 的數值分裝
+        arrayJson.forEach(function(partner){
+            partnerArray.push(partner.Partner);
+            costArray.push(partner.PdCost);
+            qtyArray.push(partner.PdQty);
+            backArray.push('rgba('+ Math.floor(Math.random()*255) +', ' + Math.floor(Math.random()*255) + ', ' + Math.floor(Math.random()*255) + ', 0.2)')
+            borderArray.push('rgba('+ Math.floor(Math.random()*255) +', ' + Math.floor(Math.random()*255) + ', ' + Math.floor(Math.random()*255) + ', 0.2)')
+        });
+        // 這裡的script 需要分件數 客戶
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: partnerArray,
+                datasets: [{
+                    label: '各客戶下單的數量',
+                    data: qtyArray,
+                    backgroundColor: backArray,
+                    borderColor: borderArray,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // 這裡的script 需要分金額 客戶
+        var ctx2 = document.getElementById("myChart2");
+        mychart = new Chart(ctx2, {
+            type: "doughnut", // 圖表類型
+            data: {
+                labels: partnerArray, // 標題
+                datasets: [{
+                    label: "# myLabel", // 標籤
+                    data: costArray, // 資料
+                    backgroundColor: backArray,  // 顏色
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '各客戶下單的金額'
+                    }
+                }
+            },
+        });
+
+    </script>
+    <script strc="change_form.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+.button_page span{
+  width:100px;
+  border:1px solid;
+  margin:10px;
+  line-height: 50px;
+  text-align: center;
+}
