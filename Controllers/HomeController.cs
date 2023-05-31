@@ -1,6 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using IActionResultExample.Models;
 using System.Text.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+ 
+using System.Diagnostics;
+using System.IO;
 
 namespace IActionResultExample.Controllers
 {
@@ -42,6 +53,16 @@ namespace IActionResultExample.Controllers
             var reportMostcostPartner = "";
             double? reportMostcost = 0;
             double? reportMostcostPersent = 0;
+            double? productAllqty = 0;
+            double? productAllcost = 0;
+            var productMostqtyproduct = "";
+            var productMostqtyproductcode = "";
+            double? productMostqty = 0;
+            double? productMostqtyPersent = 0;
+            var productMostcostproduct = "";
+            var productMostcostproductcode = "";
+            double? productMostcost = 0;
+            double? productMostcostPersent = 0;
 
 
             // return Content($"<h1>test {result}<h1>", "text/html");
@@ -54,23 +75,49 @@ namespace IActionResultExample.Controllers
                 if (anypartner.Exists(x => x.Partner == i.partner)){
                     // 如果已經存在 把花費跟件數加上去
                     var model = anypartner.Where(y => y.Partner == i.partner).First();
-                    model.PdCost += i.cost;
+                    model.PdCost += i.cost*i.qty;
                     model.PdQty += i.qty;
                     // 加入總計資料
-                    reportAllcost += i.cost;
+                    reportAllcost += i.cost*i.qty;
                     reportAllqty += i.qty;
                 }else {
                     // 宣告新的並加入
                     partnerTotal partner = new partnerTotal();
                     partner.Partner = i.partner;
-                    partner.PdCost = i.cost;
+                    partner.PdCost = i.cost*i.qty;
                     partner.PdQty = i.qty;
                     anypartner.Add(partner);
                     // 加入總計資料
-                    reportAllcost += i.cost;
+                    reportAllcost += i.cost*i.qty;
                     reportAllqty += i.qty;
                 }}
             
+
+            // 在list沒有這個product的時候新建
+            List<productTotal> anyproduct = new List<productTotal>();
+            foreach (var i in result){
+                if (anyproduct.Exists(x => x.ProductCode == i.productcode)){
+                    // 如果已經存在 把花費跟件數加上去
+                    var model = anyproduct.Where(y => y.ProductCode == i.productcode).First();
+                    model.PdCost += i.cost*i.qty;
+                    model.PdQty += i.qty;
+                    // 加入總計資料
+                    productAllcost += i.cost*i.qty;
+                    productAllqty += i.qty;
+                }else {
+                    // 宣告新的並加入
+                    productTotal product = new productTotal();
+                    product.Product = i.product;
+                    product.ProductCode = i.productcode;
+                    product.PdCost = i.cost*i.qty;
+                    product.PdQty = i.qty;
+                    anyproduct.Add(product);
+                    // 加入總計資料
+                    productAllcost += i.cost*i.qty;
+                    productAllqty += i.qty;
+                }}
+
+
             // 計算完partner資料, 找最大值
             foreach(var i in anypartner){
                 if (reportMostcost < i.PdCost){
@@ -84,6 +131,22 @@ namespace IActionResultExample.Controllers
             }
             reportMostcostPersent = reportMostcost / reportAllcost;
             reportMostqtyPersent = reportMostqty / reportAllqty;
+
+            // 計算完product資料, 找最大值
+            foreach(var i in anyproduct){
+                if (productMostcost < i.PdCost){
+                    productMostcost = i.PdCost;
+                    productMostcostproduct = i.Product;
+                    productMostcostproductcode = i.ProductCode;
+                }
+                if (productMostqty < i.PdQty){
+                    productMostqty = i.PdQty;
+                    productMostqtyproduct = i.Product;
+                    productMostqtyproductcode = i.ProductCode;
+                }
+            }
+            productMostcostPersent = productMostcost / productAllcost;
+            productMostqtyPersent = productMostqty / productAllqty;
 
             // 傳送json
             var jsonanypartner = JsonSerializer.Serialize(anypartner);
@@ -101,10 +164,76 @@ namespace IActionResultExample.Controllers
             ViewData["reportmostqtypresent"] = reportMostqtyPersent;
             ViewData["reportmostqty"] = reportMostqty;
             ViewData["reportmostcost"] = reportMostcost;
+            ViewData["partnercount"] = anypartner.Count;
+            
+            ViewData["productallqty"] = productAllqty;
+            ViewData["productallcost"] = productAllcost;
+            ViewData["productmostqtyproduct"] = productMostqtyproduct;
+            ViewData["productmostqtyproductcode"] = productMostqtyproductcode;
+            ViewData["productmostqty"] = productMostqty;
+            ViewData["productmostqtypresent"] = productMostqtyPersent;
+            ViewData["productmostcostproduct"] = productMostcostproduct;
+            ViewData["productmostcostproductcode"] = productMostcostproductcode;
+            ViewData["productmostcost"] = productMostcost;
+            ViewData["productmostcostpresent"] = productMostcostPersent;
 
             ViewData["jsonArray"] = jsonanypartner;
 
             return View(result);
+        }
+
+
+        [Route("webApi/createCsv")]
+        [HttpPost]
+        public string createCsv(string type, string startDate, string endDate, sqlResult data){
+
+            string[] values = new string[3];
+            string Arguments = @"create_csv.py";
+            values[0] = type;
+            values[1] = startDate;
+            values[2] = endDate;
+            runPythonScript(Arguments, "-u", values);
+
+            return type + " " + startDate + " " + endDate;
+        }
+
+        public static void runPythonScript(string argument, string args = "", params string[] teps){
+            // Process p = new Process();
+            string path = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + argument;
+            // //p.StartInfo.FileName = "python.exe";
+            // p.StartInfo.FileName = @"C:\\Users\\jaitslin\\AppData\\Local\\Programs\\Python\\Python310\\python.exe";
+            string arguments = path;
+            arguments = "\"" + arguments + "\"";
+            foreach (string sigstr in teps)
+            {
+                arguments += " " + (string?)sigstr;
+            }
+            arguments += " " + args;
+
+            // p.StartInfo.Arguments = arguments;
+            // p.StartInfo.UseShellExecute = false;
+            // p.StartInfo.RedirectStandardOutput = true;
+            // p.StartInfo.RedirectStandardInput = true;
+            // p.StartInfo.RedirectStandardError = true;
+            // p.Start();
+            // p.BeginOutputReadLine();
+            // p.WaitForExit();
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "python.exe";
+            //start.Arguments = @"D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表-整合其它程式語言\bin\Debug\net7.0\create_csv.py test print printf";
+            // 有空格的處理方式
+            start.Arguments = arguments;
+            //start.Arguments = "\"" + start.Arguments + "\"";
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using(Process process = Process.Start(start))
+            {
+                using(StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    Console.Write(result);
+                }
+            }
         }
     }
 

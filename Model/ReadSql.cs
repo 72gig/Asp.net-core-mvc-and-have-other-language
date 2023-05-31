@@ -109,4 +109,10 @@ namespace IActionResultExample.Models
         public double? PdCost { get; set; }
         public double? PdQty { get; set; }
     }
+    public class productTotal{
+        public string? ProductCode { get; set; }
+        public string? Product { get; set; }
+        public double? PdCost { get; set; }
+        public double? PdQty { get; set; }
+    }
 }

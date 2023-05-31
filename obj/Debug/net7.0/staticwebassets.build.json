@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pc3wNojj590E0MQcJOcG06JwCoirE7GtV3cfyiMVwR4=",
+  "Hash": "i7veof0fQcWvRs02zAXOZVoAIUoL8W2wltBgs4kdTmA=",
   "Source": "非課程 用asp.net core 建立報表",
   "BasePath": "_content/非課程 用asp.net core 建立報表",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "非課程 用asp.net core 建立報表\\wwwroot",
       "Source": "非課程 用asp.net core 建立報表",
-      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\",
       "BasePath": "_content/非課程 用asp.net core 建立報表",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\change_form.js",
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\change_form.js",
       "SourceId": "非課程 用asp.net core 建立報表",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\",
       "BasePath": "_content/非課程 用asp.net core 建立報表",
       "RelativePath": "change_form.js",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\change_form.js"
     },
     {
-      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\global_css.css",
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\global_css.css",
       "SourceId": "非課程 用asp.net core 建立報表",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\",
       "BasePath": "_content/非課程 用asp.net core 建立報表",
       "RelativePath": "global_css.css",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot\\global_css.css"
     },
     {
-      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\page_css.css",
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\page_css.css",
       "SourceId": "非課程 用asp.net core 建立報表",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\",
       "BasePath": "_content/非課程 用asp.net core 建立報表",
       "RelativePath": "page_css.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\page_css.css"
     },
     {
-      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\start.html",
+      "Identity": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\start.html",
       "SourceId": "非課程 用asp.net core 建立報表",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表\\wwwroot\\",
+      "ContentRoot": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\wwwroot\\",
       "BasePath": "_content/非課程 用asp.net core 建立報表",
       "RelativePath": "start.html",
       "AssetKind": "All",

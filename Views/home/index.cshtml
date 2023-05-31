@@ -51,9 +51,15 @@
             hiddenfield1.value = document.querySelector('[name=report]:checked').id;
         }
     </script>
+    <link rel="stylesheet" href='page_css.css' type="text/css"/>
 </head>
 
-<body>
+<body style="font-size: 30px;">
+    <div style="color: red;">
+        <span style="font-size: 60px;">以報表形式顯示日期中的數量及金額</span><br /><br />
+        <span>在下面的選項選擇要查看的項目和日期，會顯示出同時間擁有的單據數量和金額</span>
+    </div>
+    <form class="flex">
     <div>
         <input type="radio" name="report" id="saler" name="sale-report">銷售訂單報表</input>
         <input type="radio" name="report" id="purchase" name="purchase-report">採購訂單報表</input>
@@ -62,14 +68,14 @@
     <!--input type="button" onclick="GetMessage()" value="Get Message" />
     <p id="ptext"></p>
     <input type="button" value="Message" id="htmlbutton" onclick="jsShow()" /-->
-    <div>
-        <label for="start">Start Date:</label>
+    <div style="padding-top: 40px;">
+        <label for="start">開始日期:</label>
         <input type="date" id="startday" name="input-start" /><br>
-        <label for="end">End Date:</label>
+        <label for="end">結束日期:</label>
         <input type="date" id="endday" name="input-end" />
     </div>
-    <div>
-        <input type="button" value="Go" onclick="gotoReport()" name="Button"/>
+    <div style="padding-top: 40px;" >
+        <input type="button" value="確認"  style="font-size:30px" onclick="gotoReport()" name="Button"/>
         <label id = "printerror"></label>
     </div>
     <div>
@@ -77,8 +83,9 @@
         <asp:HiddenField id="hiddenfield2" runat="server"/>
         <asp:HiddenField id="hiddenfield3" runat="server"/>
     </div>
-    <form runat="server">
+    <!--form runat="server">
         <asp:Button id=Button1 Text="Clickbutton" οnclick="ReportClicked" runat="server" />
+    </form-->
     </form>
 
 </body>

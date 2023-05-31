@@ -10,6 +10,12 @@ double mostQtyPresent = Math.Round((double)@ViewData["reportmostqtypresent"],4)*
 double allQty = Math.Round((double)@ViewData["reportallqty"],4);
 double mostQty = Math.Round((double)@ViewData["reportmostqty"],4);
 
+// double productallCost = Math.Round((double)@ViewData["productallcost"],4);
+double productmostCost = Math.Round((double)@ViewData["productmostcost"],4);
+double productmostCostPresent = Math.Round((double)@ViewData["productmostcostpresent"],4)*100;
+double productmostQtyPresent = Math.Round((double)@ViewData["productmostqtypresent"],4)*100;
+// double productallQty = Math.Round((double)@ViewData["productallqty"],4);
+double productmostQty = Math.Round((double)@ViewData["productmostqty"],4);
 
 }
 @functions{
@@ -37,6 +43,7 @@ double mostQty = Math.Round((double)@ViewData["reportmostqty"],4);
             const form_image = document.getElementById('form_image');
             const form_detail = document.getElementById('form_detail');
             const form_all = document.getElementById('form_all');
+            const btn_python = document.querySelector('#print_button #print_by_python');
 
             btn_image.addEventListener('click', () => {
 
@@ -61,6 +68,31 @@ double mostQty = Math.Round((double)@ViewData["reportmostqty"],4);
                     form_all.style.display = 'none';
                     form_detail.style.display = 'block';
                 }
+            });
+            $(document).ready(function() {
+                // 可能要先取出Model的的資料
+                var modelData;
+                console.log(@Model.Count());
+
+                btn_python.addEventListener('click', () =>{
+                    function python_csv() {
+                        $.ajax({
+                            url: '@Url.Action("createCsv", "Home")',
+                            data:{"type": '@ViewData["thisreport"]', "startDate":'@ViewData["reportstartdate"]', "endDate":'@ViewData["reportenddate"]', 'data':'@Model'},
+                            cache:false,
+                            type: "POST",
+                            success: function(data){
+                                console.log(data);
+                                console.log("success to create");
+                            },
+                            error: function(data){
+                                console.log("failed to create");
+                            }
+                        })
+                        console.log("run");
+                    }
+                    python_csv();
+                });
             });
         })
     </script>
@@ -91,10 +123,10 @@ double mostQty = Math.Round((double)@ViewData["reportmostqty"],4);
 
 <body>
     @if ( (string?)ViewData["thisreport"] == "purchase"){  // 這裡的[]打錯字不會報錯
-        <h2 style="font-size: 40px;">採購單報表</h2>
+        <h2 style="font-size: 40px;">採購訂單報表</h2>
     }
     else if ( (string?)ViewData["thisreport"] == "saler"){
-        <h2 style="font-size: 40px;">訂單報表</h2>
+        <h2 style="font-size: 40px;">銷售訂單報表</h2>
     }
     else if ( (string?)ViewData["thisreport"] == "outside"){
         <h2 style="font-size: 40px;">加工單報表</h2>
@@ -103,30 +135,46 @@ double mostQty = Math.Round((double)@ViewData["reportmostqty"],4);
         <span id="print_image" style="background-color: black; color: white;">圖表顯示</span>
         <span id="print_detail">詳細資料</span>
         <span id="print_all">總計</span>
+        <span id="print_by_python">取出資料</span>
     </div>
     <form id = "form_all" style="display: none;">
         <div id="data_all" style="padding-top: 40px;">
             <table width="100%" border="1">
                 <tr>
                     <td>
-                        <span style="font-size: 50px; line-height: 85px">報表資料的開始日期: @ViewData["reportstartdate"]</span><br />
-                        <span style="font-size: 50px; line-height: 85px">報表資料的結束日期: @ViewData["reportenddate"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的開始日期: @ViewData["reportstartdate"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的結束日期: @ViewData["reportenddate"]</span><br />
                     </td>
                     <td>
-                        <span style="font-size: 50px; line-height: 85px">報表資料的總數量: @allQty</span><br />
-                        <span style="font-size: 50px; line-height: 85px">報表資料的總金額: @allCost</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的客戶數量: @ViewData["partnercount"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的料品總數量: @allQty</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的料品總金額: @allCost</span><br />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span style="font-size: 50px; line-height: 85px">報表資料的下單最大數量客戶: @ViewData["reportmostqtypartner"]</span><br />
-                        <span style="font-size: 50px; line-height: 85px">下單最大數量客戶的總數量: @mostQty</span><br />
-                        <span style="font-size: 50px; line-height: 85px">占報表資料的比例: @mostQtyPresent %</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的下單最大數量客戶: @ViewData["reportmostqtypartner"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">下單最大數量客戶的總數量: @mostQty</span><br />
+                        <span style="font-size: 30px; line-height: 85px">占報表資料的比例: @mostQtyPresent %</span><br />
                     </td>
                     <td>
-                        <span style="font-size: 50px; line-height: 85px">報表資料的下單最大金額客戶: @ViewData["reportmostcostpartner"]</span><br />
-                        <span style="font-size: 50px; line-height: 85px">下單最大金額客戶的總金額: @mostCost</span><br />
-                        <span style="font-size: 50px; line-height: 85px">占報表資料的比例: @mostCostPresent %</span>
+                        <span style="font-size: 30px; line-height: 85px">報表資料的下單最大金額客戶: @ViewData["reportmostcostpartner"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">下單最大金額客戶的總金額: @mostCost</span><br />
+                        <span style="font-size: 30px; line-height: 85px">占報表資料的比例: @mostCostPresent %</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-size: 30px; line-height: 85px">報表資料的下單最大數量料品: @ViewData["productmostqtyproduct"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的下單最大數量料品代號: @ViewData["productmostqtyproductcode"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">下單最大數量料品的總數量: @productmostQty</span><br />
+                        <span style="font-size: 30px; line-height: 85px">占報表資料的比例: @productmostQtyPresent %</span><br />
+                    </td>
+                    <td>
+                        <span style="font-size: 30px; line-height: 85px">報表資料的下單最大金額料品: @ViewData["productmostcostproduct"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">報表資料的下單最大金額料品代號: @ViewData["productmostcostproduct"]</span><br />
+                        <span style="font-size: 30px; line-height: 85px">下單最大金額料品的總金額: @productmostCost</span><br />
+                        <span style="font-size: 30px; line-height: 85px">占報表資料的比例: @productmostCostPresent %</span>
                     </td>
                 </tr>
             </table>
