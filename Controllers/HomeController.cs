@@ -185,23 +185,26 @@ namespace IActionResultExample.Controllers
 
         [Route("webApi/createCsv")]
         [HttpPost]
-        public string createCsv(string type, string startDate, string endDate, sqlResult data){
+        public string createCsv(string type, string startDate, string endDate,
+                                double allCost, double allQty, double mostCost, double mostQty,
+                                sqlResult data){
 
-            string[] values = new string[3];
+            string[] values = new string[7];
             string Arguments = @"create_csv.py";
             values[0] = type;
             values[1] = startDate;
             values[2] = endDate;
+            values[3] = allCost.ToString();
+            values[4] = allQty.ToString();
+            values[5] = mostCost.ToString();
+            values[6] = mostQty.ToString();
             runPythonScript(Arguments, "-u", values);
 
             return type + " " + startDate + " " + endDate;
         }
 
         public static void runPythonScript(string argument, string args = "", params string[] teps){
-            // Process p = new Process();
             string path = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + argument;
-            // //p.StartInfo.FileName = "python.exe";
-            // p.StartInfo.FileName = @"C:\\Users\\jaitslin\\AppData\\Local\\Programs\\Python\\Python310\\python.exe";
             string arguments = path;
             arguments = "\"" + arguments + "\"";
             foreach (string sigstr in teps)
@@ -210,20 +213,10 @@ namespace IActionResultExample.Controllers
             }
             arguments += " " + args;
 
-            // p.StartInfo.Arguments = arguments;
-            // p.StartInfo.UseShellExecute = false;
-            // p.StartInfo.RedirectStandardOutput = true;
-            // p.StartInfo.RedirectStandardInput = true;
-            // p.StartInfo.RedirectStandardError = true;
-            // p.Start();
-            // p.BeginOutputReadLine();
-            // p.WaitForExit();
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = "python.exe";
-            //start.Arguments = @"D:\Users\jaitslin\Desktop\record\python 想法二\非課程 用asp.net core 建立報表-整合其它程式語言\bin\Debug\net7.0\create_csv.py test print printf";
             // 有空格的處理方式
             start.Arguments = arguments;
-            //start.Arguments = "\"" + start.Arguments + "\"";
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             using(Process process = Process.Start(start))

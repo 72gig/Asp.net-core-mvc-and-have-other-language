@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj": {}
+    "C:\\Users\\User\\Desktop\\sd\\存到GitHub 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj": {}
   },
   "projects": {
-    "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj": {
+    "C:\\Users\\User\\Desktop\\sd\\存到GitHub 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\sd\\存到GitHub 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj",
         "projectName": "非課程 用asp.net core 建立報表",
-        "projectPath": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj",
-        "packagesPath": "C:\\Users\\jaitslin\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\jaitslin\\Desktop\\record\\python 想法二\\非課程 用asp.net core 建立報表-整合其它程式語言\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\sd\\存到GitHub 用asp.net core 建立報表-整合其它程式語言\\非課程 用asp.net core 建立報表.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\sd\\存到GitHub 用asp.net core 建立報表-整合其它程式語言\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jaitslin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -62,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

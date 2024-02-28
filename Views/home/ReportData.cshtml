@@ -76,9 +76,17 @@ double productmostQty = Math.Round((double)@ViewData["productmostqty"],4);
 
                 btn_python.addEventListener('click', () =>{
                     function python_csv() {
+                        console.log(@allCost);
                         $.ajax({
                             url: '@Url.Action("createCsv", "Home")',
-                            data:{"type": '@ViewData["thisreport"]', "startDate":'@ViewData["reportstartdate"]', "endDate":'@ViewData["reportenddate"]', 'data':'@Model'},
+                            data:{"type": '@ViewData["thisreport"]',
+                                  "startDate":'@ViewData["reportstartdate"]',
+                                  "endDate":'@ViewData["reportenddate"]',
+                                  "allcost":'@allCost',
+                                  "allqty":'@allQty',
+                                  "mostcost":'@mostCost',
+                                  "mostqty":'@mostQty',
+                                  'data':'@Model'},
                             cache:false,
                             type: "POST",
                             success: function(data){
